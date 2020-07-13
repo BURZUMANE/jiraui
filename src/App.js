@@ -13,7 +13,7 @@ function App() {
   const [specifiedData, setSpecified] = useState([]);
   const [options, setOtions] = useState([
     {
-      value: "issuetype+in+standardIssueTypes()+ORDER+BY+created+DESC",
+      value: "issuetype%20%3D%20Bug%20ORDER%20BY%20created%20DESC",
       label: "All",
     },
     {
@@ -33,7 +33,7 @@ function App() {
     setState({ selectedOption });
     const fetchData = async () => {
       const result = await axios.get(
-        `https://honest-toque-64210.herokuapp.com/api/issues/${selectedOption.value}`,
+        `http://18.194.234.158:3000/api/issues/${selectedOption.value}`,
       );
       console.log(result);
       setData(result.data);
@@ -45,7 +45,7 @@ function App() {
     // console.log(jql);
     const fetchData = async () => {
       const result = await axios.get(
-        `https://honest-toque-64210.herokuapp.com/api/sepcified/${jql}`,
+        `http://18.194.234.158:3000/api/sepcified/${jql}`,
       );
       setSpecified(result.data);
     };
@@ -56,7 +56,8 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const jql = "issuetype+in+standardIssueTypes()+ORDER+BY+created+DESC";
-      const result = await axios.get(`https://honest-toque-64210.herokuapp.com/api/issues/${jql}`);
+      
+      const result = await axios.get(`http://18.194.234.158:3000/api/issues/${jql}`);
       setData(result.data);
     };
     fetchData();
